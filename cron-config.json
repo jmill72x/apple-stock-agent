@@ -1,0 +1,39 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "name": "Apple Mac Mini Stock Alert",
+  "enabled": true,
+  "createdAtMs": 1746500000000,
+  "schedule": {
+    "kind": "cron",
+    "expr": "*/15 8-22 * * *",
+    "tz": "America/New_York",
+    "staggerMs": 0
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Read and execute the skill file at /data/skills/apple_stock_check.md",
+    "model": "openrouter/minimax/minimax-m2.7",
+    "lightContext": true,
+    "timeoutSeconds": 500,
+    "modelFallbacks": [
+      "openrouter/minimax/minimax-m2.5:free"
+    ],
+    "thinking": "minimal"
+  },
+  "delivery": {
+    "mode": "none",
+    "channel": "discord",
+    "to": "DISCORD_CHANNEL_ID",
+    "bestEffort": false
+  },
+  "deleteAfterRun": false,
+  "failureAlert": {
+    "after": 3,
+    "channel": "discord",
+    "cooldownMs": 3600000,
+    "mode": "announce"
+  },
+  "state": {}
+}
